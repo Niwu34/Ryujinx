@@ -1,3 +1,4 @@
+using Silk.NET.Vulkan;
 using System.Text.RegularExpressions;
 
 namespace Ryujinx.Graphics.Vulkan
@@ -59,6 +60,42 @@ namespace Ryujinx.Graphics.Vulkan
                 0x10005 => "Mesa",
                 0x10006 => "PoCL",
                 _ => $"0x{id:X}",
+            };
+        }
+
+        public static string GetFriendlyDriverName(DriverId id)
+        {
+            return id switch
+            {
+                DriverId.AmdProprietary => "AMD",
+                DriverId.AmdOpenSource => "AMD (Open)",
+                DriverId.MesaRadv => "RADV",
+                DriverId.NvidiaProprietary => "NVIDIA",
+                DriverId.IntelProprietaryWindows => "Intel",
+                DriverId.IntelOpenSourceMesa => "Intel (Open)",
+                DriverId.ImaginationProprietary => "Imagination",
+                DriverId.QualcommProprietary => "Qualcomm",
+                DriverId.ArmProprietary => "ARM",
+                DriverId.GoogleSwiftshader => "SwiftShader",
+                DriverId.GgpProprietary => "GGP",
+                DriverId.BroadcomProprietary => "Broadcom",
+                DriverId.MesaLlvmpipe => "LLVMpipe",
+                DriverId.Moltenvk => "MoltenVK",
+                DriverId.CoreaviProprietary => "CoreAVI",
+                DriverId.JuiceProprietary => "Juice",
+                DriverId.VerisiliconProprietary => "Verisilicon",
+                DriverId.MesaTurnip => "Turnip",
+                DriverId.MesaV3DV => "V3DV",
+                DriverId.MesaPanvk => "PanVK",
+                DriverId.SamsungProprietary => "Samsung",
+                DriverId.MesaVenus => "Venus",
+                DriverId.MesaDozen => "Dozen",
+
+                // TODO: Use real enum when we have an up to date Silk.NET.
+                (DriverId)24 => "NVK",
+                (DriverId)25 => "Imagination (Open)",
+                (DriverId)26 => "Honeykrisp",
+                _ => id.ToString(),
             };
         }
     }
